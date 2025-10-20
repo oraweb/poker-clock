@@ -14,7 +14,7 @@ rounds:
   
   - number: 3
     name: "Break"
-    duration: 5  # minutes
+    duration: 10  # minutes
     is_break: true
   
   - number: 4
@@ -29,7 +29,7 @@ rounds:
   
   - number: 6
     name: "Break"
-    duration: 5  # minutes
+    duration: 10  # minutes
     is_break: true
   
   - number: 7
@@ -44,7 +44,7 @@ rounds:
 
   - number: 9
     name: "Break"
-    duration: 5  # minutes
+    duration: 10  # minutes
     is_break: true
   
   - number: 10
@@ -59,7 +59,7 @@ rounds:
 
   - number: 12
     name: "Break"
-    duration: 5  # minutes
+    duration: 10  # minutes
     is_break: true
   
   - number: 13
@@ -69,6 +69,6 @@ rounds:
   
   - number: 14
     name: "2500 / 5000"
-    duration: 20  # minutes
+    duration: 360  # minutes
     is_break: false
     
