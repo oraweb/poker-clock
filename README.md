@@ -5,18 +5,21 @@ https://oraweb.github.io/poker-clock/
 
 ## Features
 
-- **Large Countdown Display**: Centered, very large timer showing hours:minutes:seconds
-- **Full-Screen Support**: Optimized for any device with a large screen
+- **Large Countdown Display**: Centered, responsive timer showing hours:minutes:seconds that scales to fit any screen
+- **Full-Screen Support**: Optimized for all devices - desktops, laptops, tablets, and phones
+- **Responsive Design**: Timer, rounds table, and all UI elements automatically adapt to screen size
 - **Multiple Configurations**: Support for multiple tournament configurations with different structures
 - **Configurable Rounds**: Define tournament rounds in `config-*.yml` files with custom names, durations, and break indicators
-- **Keyboard Control**: 
-  - Press **SPACEBAR** to start/pause the timer
-  - Press **ENTER** to manually advance to the next round
+- **Multi-Platform Control**: 
+  - **Desktop/Laptop**: Press **SPACEBAR** to start/pause the timer, **ENTER** to manually advance to the next round
+  - **Mobile/Tablet**: Tap on-screen buttons to Start/Pause or advance to the next round
+  - **Collapsible Rounds Table**: Toggle button on mobile/tablet to show/hide rounds table for more screen space
 - **Auto-Progression**: Automatically advances to the next round when timer reaches zero
 - **Visual Warnings**: 
   - Orange pulsing at 2-minute warning
   - Red flashing during final 10 seconds
 - **Break Indicator**: Different background color for break rounds
+- **Touch-Friendly**: Large, easily tappable buttons on mobile devices with visual feedback
 - **GitHub Pages**: Automatically deployed via GitHub Actions
 
 ## Quick Start
@@ -84,10 +87,31 @@ The repository includes example configurations:
 
 1. Open the poker clock page (index.html)
 2. Select your desired tournament configuration (Tourney, League, etc.)
-3. Press **SPACEBAR** to start the timer
-4. Press **SPACEBAR** again to pause
-5. Press **ENTER** to manually advance to the next round
+3. **Desktop/Laptop**: Press **SPACEBAR** to start the timer, **SPACEBAR** again to pause, **ENTER** to manually advance to the next round
+4. **Mobile/Tablet**: Tap the **▶ Start** button to start, **⏸ Pause** to pause, **⏭ Next Round** to advance
+5. **Mobile/Tablet**: Use the **Show/Hide Rounds** button in the top-right corner to toggle the rounds table
 6. Timer automatically advances to the next round when it reaches zero
+
+## Device-Specific Features
+
+### Desktop & Laptop
+- Full keyboard control with SPACEBAR and ENTER keys
+- Rounds table always visible on the left side
+- Large timer display optimized for external monitors/projectors
+- Instructions show keyboard shortcuts
+
+### Tablet
+- Touch-friendly control buttons below the timer
+- Collapsible rounds table to maximize screen space
+- Responsive timer that scales to tablet screen size
+- Instructions show tap controls
+
+### Mobile Phones
+- Large, easily tappable control buttons
+- Collapsible rounds table accessible via toggle button
+- Timer automatically sized to fit phone screen (tested on iPhone 15 and similar devices)
+- Optimized layout with rounds table at top when visible
+- Instructions show tap controls
 
 ## Visual States
 
@@ -99,8 +123,11 @@ The repository includes example configurations:
 ## Technical Details
 
 - Pure HTML, CSS, and JavaScript (no external dependencies for the clock itself)
-- Python script generates a single self-contained HTML file
-- Responsive design works on any screen size
+- Python script generates self-contained HTML files
+- Fully responsive design with CSS media queries and viewport-based sizing
+- Works on any screen size from mobile phones (375px) to large displays (1920px+)
+- Touch-optimized controls with proper tap targets (minimum 44x44px)
+- Adaptive UI that detects device type and shows appropriate controls
 - No audio (visual indicators only)
 
 ## License

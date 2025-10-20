@@ -112,81 +112,28 @@
             justify-content: center;
         }
 
-        /* Responsive design */
-        @media (max-width: 1024px) {
-            .main-layout {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .rounds-section {
-                flex: 0 0 auto;
-                width: 100%;
-                height: 250px;
-                max-height: 35vh;
-            }
-
-            .rounds-header {
-                font-size: 1.5rem;
-                padding: 10px 15px;
-                margin-bottom: 0;
-            }
-
-            .rounds-table {
-                flex: 1;
-            }
-
-            .round-item {
-                display: inline-block;
-                width: calc(33.333% - 10px);
-                margin-right: 10px;
-                vertical-align: top;
-            }
-
-            .round-item-name {
-                font-size: 1rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .round-item {
-                width: calc(50% - 10px);
-            }
-
-            .rounds-section {
-                height: 180px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .round-item {
-                width: 100%;
-                margin-right: 0;
-            }
-        }
-
         .round-info {
             margin-bottom: 30px;
         }
 
         .round-number {
-            font-size: 3rem;
+            font-size: clamp(1.5rem, 4vw, 3rem);
             opacity: 0.8;
             margin-bottom: 10px;
         }
 
         .round-name {
-            font-size: 5rem;
+            font-size: clamp(2rem, 6vw, 5rem);
             font-weight: bold;
             margin-bottom: 20px;
         }
 
         .timer {
-            font-size: 12rem;
+            font-size: clamp(3rem, 15vw, 12rem);
             font-weight: bold;
             font-family: 'Courier New', monospace;
             line-height: 1;
-            margin: 40px 0;
+            margin: 20px 0;
             text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
             transition: all 0.3s ease;
         }
@@ -255,11 +202,162 @@
             opacity: 0.5;
             text-align: center;
         }
+
+        /* Mobile control buttons */
+        .mobile-controls {
+            display: none;
+            gap: 15px;
+            margin-top: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .control-button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .control-button:active {
+            transform: scale(0.95);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .control-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Rounds toggle button */
+        .rounds-toggle {
+            display: none;
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 1000;
+            font-size: 1rem;
+            font-weight: bold;
+            backdrop-filter: blur(10px);
+            touch-action: manipulation;
+            user-select: none;
+        }
+
+        .rounds-toggle:active {
+            transform: scale(0.95);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .rounds-section.collapsed {
+            display: none;
+        }
+
+        /* Responsive design - Must be after base styles */
+        @media (max-width: 1024px) {
+            .main-layout {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .rounds-section {
+                flex: 0 0 auto;
+                width: 100%;
+                height: 250px;
+                max-height: 35vh;
+            }
+
+            .rounds-header {
+                font-size: 1.5rem;
+                padding: 10px 15px;
+                margin-bottom: 0;
+            }
+
+            .rounds-table {
+                flex: 1;
+            }
+
+            .round-item {
+                display: inline-block;
+                width: calc(33.333% - 10px);
+                margin-right: 10px;
+                vertical-align: top;
+            }
+
+            .round-item-name {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .round-item {
+                width: calc(50% - 10px);
+            }
+
+            .rounds-section {
+                height: 180px;
+            }
+
+            /* Show mobile controls on tablets and phones */
+            .mobile-controls {
+                display: flex !important;
+            }
+
+            /* Show toggle button on tablets and phones */
+            .rounds-toggle {
+                display: block !important;
+            }
+
+            /* Hide keyboard instructions on mobile */
+            .instructions {
+                font-size: 1rem;
+            }
+
+            .status {
+                font-size: 1.5rem;
+            }
+
+            .next-round {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .round-item {
+                width: 100%;
+                margin-right: 0;
+            }
+
+            .control-button {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+
+            body {
+                padding: 10px;
+            }
+        }
     </style>
 </head>
 <body>
+    <button class="rounds-toggle" id="roundsToggle" onclick="toggleRounds()">Show/Hide Rounds</button>
+    
     <div class="main-layout">
-        <div class="rounds-section">
+        <div class="rounds-section" id="roundsSection">
             <h2 class="rounds-header">Tournament Rounds</h2>
             <div class="rounds-table" id="roundsTable">
                 <div id="roundsList"></div>
@@ -278,7 +376,12 @@
             
             <div class="next-round" id="nextRound"></div>
             
-            <div class="instructions">
+            <div class="mobile-controls">
+                <button class="control-button" id="playPauseBtn" onclick="toggleTimer()">▶ Start</button>
+                <button class="control-button" id="nextRoundBtn" onclick="advanceToNextRound()">⏭ Next Round</button>
+            </div>
+            
+            <div class="instructions" id="instructions">
                 Press SPACEBAR to Start/Pause | Press ENTER to Advance Round
             </div>
         </div>
@@ -301,9 +404,44 @@
         const roundNameElement = document.getElementById('roundName');
         const nextRoundElement = document.getElementById('nextRound');
         const roundsListElement = document.getElementById('roundsList');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const instructionsElement = document.getElementById('instructions');
 
         // Completed rounds tracking
         let completedRounds = new Set();
+
+        // Detect if device is touch-capable
+        function isTouchDevice() {
+            return (('ontouchstart' in window) ||
+                   (navigator.maxTouchPoints > 0) ||
+                   (navigator.msMaxTouchPoints > 0));
+        }
+
+        // Update instructions based on device type
+        function updateInstructions() {
+            if (window.innerWidth <= 768 || isTouchDevice()) {
+                instructionsElement.textContent = 'Tap buttons to Start/Pause or Advance Round';
+            } else {
+                instructionsElement.textContent = 'Press SPACEBAR to Start/Pause | Press ENTER to Advance Round';
+            }
+        }
+
+        // Toggle rounds table visibility
+        function toggleRounds() {
+            const roundsSection = document.getElementById('roundsSection');
+            roundsSection.classList.toggle('collapsed');
+        }
+
+        // Update play/pause button text
+        function updatePlayPauseButton() {
+            if (playPauseBtn) {
+                if (isRunning) {
+                    playPauseBtn.innerHTML = '⏸ Pause';
+                } else {
+                    playPauseBtn.innerHTML = '▶ Start';
+                }
+            }
+        }
 
         // Format time as HH:MM:SS
         function formatTime(seconds) {
@@ -450,6 +588,7 @@
                 statusElement.textContent = 'RUNNING';
                 statusElement.className = 'status running';
                 timerInterval = setInterval(tick, 1000);
+                updatePlayPauseButton();
             }
         }
 
@@ -460,6 +599,7 @@
                 statusElement.textContent = 'PAUSED';
                 statusElement.className = 'status paused';
                 clearInterval(timerInterval);
+                updatePlayPauseButton();
             }
         }
 
@@ -489,6 +629,11 @@
             timeRemaining = rounds[0].duration;
             initRoundsTable();
             updateDisplay();
+            updateInstructions();
+            updatePlayPauseButton();
+            
+            // Update instructions on window resize
+            window.addEventListener('resize', updateInstructions);
         }
 
         // Start the application

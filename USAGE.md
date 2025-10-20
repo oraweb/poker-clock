@@ -20,7 +20,15 @@
 
 ### Controls
 
+#### Desktop/Laptop
 - **SPACEBAR** - Start/Pause the timer
+- **ENTER** - Advance to next round
+- **Refresh Page** - Reset to first round
+
+#### Mobile/Tablet  
+- **▶ Start / ⏸ Pause Button** - Start or pause the timer
+- **⏭ Next Round Button** - Advance to next round
+- **Show/Hide Rounds Button** - Toggle rounds table visibility (top-right corner)
 - **Refresh Page** - Reset to first round
 
 ### Visual Indicators
@@ -137,16 +145,27 @@ This creates a new `index.html` with your updated configuration.
 
 For the best experience:
 
+### Desktop/Laptop
 1. Open `index.html` in your browser
 2. Press **F11** (Windows/Linux) or **Control+Command+F** (Mac) for full-screen mode
 3. Press **SPACEBAR** to start the tournament
+
+### Mobile/Tablet
+1. Open the clock in your mobile browser
+2. Tap the browser's full-screen option (usually in the menu)
+3. Tap **▶ Start** to begin the tournament
+4. Use **Show/Hide Rounds** button to maximize timer space when needed
 
 ## Tips
 
 - **Test your configuration** - Run through a quick test with short durations (e.g., 10 seconds per round) to ensure everything works as expected
 - **Display on second monitor** - Open the clock on a second monitor or TV visible to all players
+- **Mobile-friendly** - The clock works great on phones and tablets - perfect for small home games
+- **Collapsible rounds table** - On mobile/tablet, hide the rounds table to give more space to the timer
+- **Touch controls** - Large buttons make it easy to control on touchscreens without keyboard
 - **Prepare in advance** - Generate the HTML before your tournament starts
 - **Keep a backup** - Save different configurations for different tournament types
+- **Works offline** - Once generated, the HTML files work without internet connection
 
 ## Troubleshooting
 
@@ -166,8 +185,14 @@ For the best experience:
 
 ### Spacebar not working
 
-- **Check:** Click on the page first to ensure it has focus
-- **Try:** Click anywhere on the clock display, then press spacebar
+- **Desktop/Laptop**: Click on the page first to ensure it has focus, then press spacebar
+- **Mobile/Tablet**: Use the on-screen **▶ Start / ⏸ Pause** button instead
+
+### Touch controls not showing
+
+- **Check screen size**: Controls appear automatically on screens 768px wide or smaller
+- **Try rotating device**: On tablets, touch controls work in both portrait and landscape
+- **Refresh the page**: Make sure you're using the latest version of the generated HTML
 
 ## GitHub Pages Deployment
 
