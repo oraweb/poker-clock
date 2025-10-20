@@ -3,12 +3,12 @@
 
 rounds:
   - number: 1
-    name: "Round 1"
+    name: "25 / 50"
     duration: 1200  # 20 minutes in seconds
     is_break: false
   
   - number: 2
-    name: "Round 2"
+    name: "50 / 100"
     duration: 1200  # 20 minutes in seconds
     is_break: false
   
@@ -18,12 +18,12 @@ rounds:
     is_break: true
   
   - number: 4
-    name: "Round 3"
+    name: "75 / 150"
     duration: 1200  # 20 minutes in seconds
     is_break: false
   
   - number: 5
-    name: "Round 4"
+    name: "100 / 200"
     duration: 1200  # 20 minutes in seconds
     is_break: false
   
@@ -33,11 +33,42 @@ rounds:
     is_break: true
   
   - number: 7
-    name: "Round 5"
+    name: "200 / 400"
     duration: 1200  # 20 minutes in seconds
     is_break: false
   
   - number: 8
-    name: "Final Round"
+    name: "300 / 600"
     duration: 1200  # 20 minutes in seconds
     is_break: false
+
+  - number: 9
+    name: "Break"
+    duration: 300  # 5 minutes in seconds
+    is_break: true
+  
+  - number: 10
+    name: "400 / 800"
+    duration: 1200  # 20 minutes in seconds
+    is_break: false
+  
+  - number: 11
+    name: "500 / 1000"
+    duration: 1200  # 20 minutes in seconds
+    is_break: false
+
+  - number: 12
+    name: "Break"
+    duration: 300  # 5 minutes in seconds
+    is_break: true
+  
+  - number: 13
+    name: "1000 / 2000"
+    duration: 1200  # 20 minutes in seconds
+    is_break: false
+  
+  - number: 14
+    name: "2500 / 5000"
+    duration: 1200  # 20 minutes in seconds
+    is_break: false
+    
