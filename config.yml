@@ -1,0 +1,43 @@
+# Poker Tournament Configuration
+# Define rounds with name, duration, and break indicators
+
+rounds:
+  - number: 1
+    name: "Round 1"
+    duration: 1200  # 20 minutes in seconds
+    is_break: false
+  
+  - number: 2
+    name: "Round 2"
+    duration: 1200  # 20 minutes in seconds
+    is_break: false
+  
+  - number: 3
+    name: "Break"
+    duration: 300  # 5 minutes in seconds
+    is_break: true
+  
+  - number: 4
+    name: "Round 3"
+    duration: 1200  # 20 minutes in seconds
+    is_break: false
+  
+  - number: 5
+    name: "Round 4"
+    duration: 1200  # 20 minutes in seconds
+    is_break: false
+  
+  - number: 6
+    name: "Break"
+    duration: 300  # 5 minutes in seconds
+    is_break: true
+  
+  - number: 7
+    name: "Round 5"
+    duration: 1200  # 20 minutes in seconds
+    is_break: false
+  
+  - number: 8
+    name: "Final Round"
+    duration: 1200  # 20 minutes in seconds
+    is_break: false
