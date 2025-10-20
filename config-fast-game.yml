@@ -29,5 +29,5 @@ rounds:
   
   - number: 6
     name: "100 / 200"
-    duration: 60  # minutes
+    duration: 10  # minutes
     is_break: false
