@@ -51,9 +51,6 @@ rounds:
 - **number**: Round number (displayed in small text above round name)
 - **name**: Round name (displayed prominently)
 - **duration**: Round length in **minutes**
-  - Example: 20 = 20 minutes
-  - Example: 15 = 15 minutes
-  - Example: 5 = 5 minutes
 - **is_break**: Set to `true` for break rounds, `false` for regular rounds
 
 ### Example Tournament Structures
