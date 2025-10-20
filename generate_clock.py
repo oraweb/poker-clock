@@ -86,22 +86,31 @@ def generate_clock_html(config, config_name='Tournament'):
             align-items: center;
         }}
 
-        .rounds-table {{
+        .rounds-section {{
             flex: 0 0 300px;
+            display: flex;
+            flex-direction: column;
             height: 80vh;
-            overflow-y: auto;
+        }}
+
+        .rounds-header {{
+            font-size: 2rem;
+            margin-bottom: 15px;
+            text-align: center;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 20px;
+            border-radius: 10px 10px 0 0;
+            padding: 15px 20px 10px;
             backdrop-filter: blur(10px);
         }}
 
-        .rounds-table h2 {{
-            font-size: 2rem;
-            margin-bottom: 20px;
-            text-align: center;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
-            padding-bottom: 10px;
+        .rounds-table {{
+            flex: 1;
+            overflow-y: auto;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 0 0 10px 10px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
         }}
 
         .round-item {{
@@ -159,15 +168,21 @@ def generate_clock_html(config, config_name='Tournament'):
                 gap: 20px;
             }}
 
-            .rounds-table {{
+            .rounds-section {{
                 flex: 0 0 auto;
                 width: 100%;
-                height: 200px;
-                max-height: 30vh;
+                height: 250px;
+                max-height: 35vh;
             }}
 
-            .rounds-table h2 {{
+            .rounds-header {{
                 font-size: 1.5rem;
+                padding: 10px 15px;
+                margin-bottom: 0;
+            }}
+
+            .rounds-table {{
+                flex: 1;
             }}
 
             .round-item {{
@@ -187,8 +202,8 @@ def generate_clock_html(config, config_name='Tournament'):
                 width: calc(50% - 10px);
             }}
 
-            .rounds-table {{
-                height: 150px;
+            .rounds-section {{
+                height: 180px;
             }}
         }}
 
@@ -293,9 +308,11 @@ def generate_clock_html(config, config_name='Tournament'):
 </head>
 <body>
     <div class="main-layout">
-        <div class="rounds-table" id="roundsTable">
-            <h2>Tournament Rounds</h2>
-            <div id="roundsList"></div>
+        <div class="rounds-section">
+            <h2 class="rounds-header">Tournament Rounds</h2>
+            <div class="rounds-table" id="roundsTable">
+                <div id="roundsList"></div>
+            </div>
         </div>
 
         <div class="container">
@@ -648,12 +665,6 @@ def generate_index_html(config_files):
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }}
 
-        .footer {{
-            margin-top: 60px;
-            font-size: 1rem;
-            opacity: 0.6;
-        }}
-
         @media (max-width: 768px) {{
             h1 {{
                 font-size: 2.5rem;
@@ -677,10 +688,6 @@ def generate_index_html(config_files):
         
         <div class="links-container">
 {links_section}
-        </div>
-
-        <div class="footer">
-            Press SPACEBAR to start/pause | Press ENTER to advance round
         </div>
     </div>
 </body>
