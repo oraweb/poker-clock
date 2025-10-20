@@ -42,7 +42,7 @@ Edit `config.yml` to customize your tournament:
 rounds:
   - number: 1
     name: "Round 1"
-    duration: 1200  # 20 minutes in seconds
+    duration: 20  # minutes
     is_break: false
 ```
 
@@ -50,10 +50,7 @@ rounds:
 
 - **number**: Round number (displayed in small text above round name)
 - **name**: Round name (displayed prominently)
-- **duration**: Round length in **seconds**
-  - Example: 1200 = 20 minutes (20 × 60)
-  - Example: 900 = 15 minutes (15 × 60)
-  - Example: 300 = 5 minutes (5 × 60)
+- **duration**: Round length in **minutes**
 - **is_break**: Set to `true` for break rounds, `false` for regular rounds
 
 ### Example Tournament Structures
@@ -63,22 +60,22 @@ rounds:
 rounds:
   - number: 1
     name: "Round 1"
-    duration: 900  # 15 minutes
+    duration: 15  # minutes
     is_break: false
   
   - number: 2
     name: "Round 2"
-    duration: 900
+    duration: 15
     is_break: false
   
   - number: 3
     name: "Break"
-    duration: 180  # 3 minutes
+    duration: 3  # minutes
     is_break: true
   
   - number: 4
     name: "Final Round"
-    duration: 1200  # 20 minutes
+    duration: 20  # minutes
     is_break: false
 ```
 
@@ -87,42 +84,42 @@ rounds:
 rounds:
   - number: 1
     name: "Round 1 - 25/50"
-    duration: 1800  # 30 minutes
+    duration: 30  # minutes
     is_break: false
   
   - number: 2
     name: "Round 2 - 50/100"
-    duration: 1800
+    duration: 30
     is_break: false
   
   - number: 3
     name: "Break"
-    duration: 600  # 10 minutes
+    duration: 10  # minutes
     is_break: true
   
   - number: 4
     name: "Round 3 - 100/200"
-    duration: 1800
+    duration: 30
     is_break: false
   
   - number: 5
     name: "Round 4 - 200/400"
-    duration: 1800
+    duration: 30
     is_break: false
   
   - number: 6
     name: "Dinner Break"
-    duration: 1800  # 30 minutes
+    duration: 30  # minutes
     is_break: true
   
   - number: 7
     name: "Round 5 - 400/800"
-    duration: 1800
+    duration: 30
     is_break: false
   
   - number: 8
     name: "Final Round"
-    duration: 1800
+    duration: 30
     is_break: false
 ```
 
