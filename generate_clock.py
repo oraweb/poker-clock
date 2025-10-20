@@ -54,16 +54,132 @@ def generate_html(config):
             color: white;
             height: 100vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             overflow: hidden;
+            padding: 20px;
+        }}
+
+        .main-layout {{
+            display: flex;
+            width: 100%;
+            max-width: 1600px;
+            height: 100%;
+            gap: 30px;
+            align-items: center;
+        }}
+
+        .rounds-table {{
+            flex: 0 0 300px;
+            height: 80vh;
+            overflow-y: auto;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+        }}
+
+        .rounds-table h2 {{
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 10px;
+        }}
+
+        .round-item {{
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+            border-left: 4px solid transparent;
+            transition: all 0.3s ease;
+        }}
+
+        .round-item.active {{
+            background: rgba(255, 255, 255, 0.2);
+            border-left-color: #00ff00;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+        }}
+
+        .round-item.completed {{
+            opacity: 0.5;
+        }}
+
+        .round-item.completed .round-item-name {{
+            text-decoration: line-through;
+        }}
+
+        .round-item-number {{
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-bottom: 5px;
+        }}
+
+        .round-item-name {{
+            font-size: 1.3rem;
+            font-weight: bold;
+        }}
+
+        .round-item-duration {{
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-top: 5px;
         }}
 
         .container {{
+            flex: 1;
             text-align: center;
-            width: 90%;
-            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }}
+
+        /* Responsive design */
+        @media (max-width: 1024px) {{
+            .main-layout {{
+                flex-direction: column;
+                gap: 20px;
+            }}
+
+            .rounds-table {{
+                flex: 0 0 auto;
+                width: 100%;
+                height: 200px;
+                max-height: 30vh;
+            }}
+
+            .rounds-table h2 {{
+                font-size: 1.5rem;
+            }}
+
+            .round-item {{
+                display: inline-block;
+                width: calc(33.333% - 10px);
+                margin-right: 10px;
+                vertical-align: top;
+            }}
+
+            .round-item-name {{
+                font-size: 1rem;
+            }}
+        }}
+
+        @media (max-width: 768px) {{
+            .round-item {{
+                width: calc(50% - 10px);
+            }}
+
+            .rounds-table {{
+                height: 150px;
+            }}
+        }}
+
+        @media (max-width: 480px) {{
+            .round-item {{
+                width: 100%;
+                margin-right: 0;
+            }}
         }}
 
         .round-info {{
@@ -71,13 +187,13 @@ def generate_html(config):
         }}
 
         .round-number {{
-            font-size: 2rem;
+            font-size: 3rem;
             opacity: 0.8;
             margin-bottom: 10px;
         }}
 
         .round-name {{
-            font-size: 3rem;
+            font-size: 5rem;
             font-weight: bold;
             margin-bottom: 20px;
         }}
@@ -162,21 +278,28 @@ def generate_html(config):
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="round-info">
-            <div class="round-number" id="roundNumber">Round 1</div>
-            <div class="round-name" id="roundName">Loading...</div>
+    <div class="main-layout">
+        <div class="rounds-table" id="roundsTable">
+            <h2>Tournament Rounds</h2>
+            <div id="roundsList"></div>
         </div>
-        
-        <div class="timer" id="timer">00:00:00</div>
-        
-        <div class="status paused" id="status">PAUSED</div>
-        
-        <div class="next-round" id="nextRound"></div>
+
+        <div class="container">
+            <div class="round-info">
+                <div class="round-number" id="roundNumber">Round 1</div>
+                <div class="round-name" id="roundName">Loading...</div>
+            </div>
+            
+            <div class="timer" id="timer">00:00:00</div>
+            
+            <div class="status paused" id="status">PAUSED</div>
+            
+            <div class="next-round" id="nextRound"></div>
+        </div>
     </div>
     
     <div class="instructions">
-        Press SPACEBAR to Start/Pause
+        Press SPACEBAR to Start/Pause | Press ENTER to Advance Round
     </div>
 
     <script>
@@ -195,6 +318,10 @@ def generate_html(config):
         const roundNumberElement = document.getElementById('roundNumber');
         const roundNameElement = document.getElementById('roundName');
         const nextRoundElement = document.getElementById('nextRound');
+        const roundsListElement = document.getElementById('roundsList');
+
+        // Completed rounds tracking
+        let completedRounds = new Set();
 
         // Format time as HH:MM:SS
         function formatTime(seconds) {{
@@ -205,6 +332,51 @@ def generate_html(config):
             return [hours, minutes, secs]
                 .map(v => v.toString().padStart(2, '0'))
                 .join(':');
+        }}
+
+        // Format duration for display (MM:SS for short durations, HH:MM for longer)
+        function formatDuration(seconds) {{
+            const hours = Math.floor(seconds / 3600);
+            const minutes = Math.floor((seconds % 3600) / 60);
+            
+            if (hours > 0) {{
+                return `${{hours}}h ${{minutes}}m`;
+            }}
+            return `${{minutes}}m`;
+        }}
+
+        // Initialize rounds table
+        function initRoundsTable() {{
+            roundsListElement.innerHTML = '';
+            rounds.forEach((round, index) => {{
+                const roundItem = document.createElement('div');
+                roundItem.className = 'round-item';
+                roundItem.id = `round-item-${{index}}`;
+                roundItem.innerHTML = `
+                    <div class="round-item-number">Round ${{round.number}}</div>
+                    <div class="round-item-name">${{round.name}}</div>
+                    <div class="round-item-duration">${{formatDuration(round.duration)}}</div>
+                `;
+                roundsListElement.appendChild(roundItem);
+            }});
+        }}
+
+        // Update rounds table to highlight current and mark completed
+        function updateRoundsTable() {{
+            rounds.forEach((round, index) => {{
+                const roundItem = document.getElementById(`round-item-${{index}}`);
+                if (roundItem) {{
+                    roundItem.classList.remove('active', 'completed');
+                    
+                    if (completedRounds.has(index)) {{
+                        roundItem.classList.add('completed');
+                    }}
+                    
+                    if (index === currentRoundIndex) {{
+                        roundItem.classList.add('active');
+                    }}
+                }}
+            }});
         }}
 
         // Update the display
@@ -241,13 +413,38 @@ def generate_html(config):
             }} else {{
                 nextRoundElement.textContent = 'Final Round';
             }}
+
+            // Update rounds table
+            updateRoundsTable();
         }}
 
         // Start the next round
         function startNextRound() {{
+            // Mark current round as completed
+            completedRounds.add(currentRoundIndex);
+            
             if (currentRoundIndex < rounds.length - 1) {{
                 currentRoundIndex++;
                 timeRemaining = rounds[currentRoundIndex].duration;
+                updateDisplay();
+            }} else {{
+                // Tournament finished
+                stopTimer();
+                statusElement.textContent = 'TOURNAMENT COMPLETE';
+                statusElement.className = 'status';
+            }}
+        }}
+
+        // Advance to next round manually (Enter key)
+        function advanceToNextRound() {{
+            // Mark current round as completed
+            completedRounds.add(currentRoundIndex);
+            
+            if (currentRoundIndex < rounds.length - 1) {{
+                currentRoundIndex++;
+                timeRemaining = rounds[currentRoundIndex].duration;
+                // Pause the timer after advancing
+                stopTimer();
                 updateDisplay();
             }} else {{
                 // Tournament finished
@@ -302,6 +499,9 @@ def generate_html(config):
             if (event.code === 'Space') {{
                 event.preventDefault();
                 toggleTimer();
+            }} else if (event.code === 'Enter') {{
+                event.preventDefault();
+                advanceToNextRound();
             }}
         }});
 
@@ -309,6 +509,7 @@ def generate_html(config):
         function init() {{
             currentRoundIndex = 0;
             timeRemaining = rounds[0].duration;
+            initRoundsTable();
             updateDisplay();
         }}
 
