@@ -262,7 +262,9 @@ def generate_clock_html(config, config_name='Tournament'):
         }}
 
         .control-button {{
-            padding: 15px 30px;
+            padding: 20px 40px;
+            min-width: 120px;
+            min-height: 44px;
             font-size: 1.2rem;
             font-weight: bold;
             border: 2px solid rgba(255, 255, 255, 0.5);
@@ -293,7 +295,8 @@ def generate_clock_html(config, config_name='Tournament'):
             position: fixed;
             top: 10px;
             right: 10px;
-            padding: 10px 20px;
+            padding: 12px 20px;
+            min-height: 44px;
             background: rgba(255, 255, 255, 0.2);
             border: 2px solid rgba(255, 255, 255, 0.5);
             color: white;
@@ -392,7 +395,8 @@ def generate_clock_html(config, config_name='Tournament'):
             }}
 
             .control-button {{
-                padding: 12px 25px;
+                padding: 16px 30px;
+                min-height: 44px;
                 font-size: 1rem;
             }}
 
@@ -462,8 +466,7 @@ def generate_clock_html(config, config_name='Tournament'):
         // Detect if device is touch-capable
         function isTouchDevice() {{
             return (('ontouchstart' in window) ||
-                   (navigator.maxTouchPoints > 0) ||
-                   (navigator.msMaxTouchPoints > 0));
+                   (navigator.maxTouchPoints > 0));
         }}
 
         // Update instructions based on device type
