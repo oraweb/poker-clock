@@ -2,8 +2,6 @@
 
 A simple, elegant poker tournament clock that displays a full-screen countdown timer with visual indicators and automatic round transitions.
 
-![Poker Clock Screenshot](https://github.com/user-attachments/assets/9142957d-4d1a-4769-b2cf-c9cfdc69b59f)
-
 ## Features
 
 - **Large Countdown Display**: Centered, very large timer showing hours:minutes:seconds
@@ -52,12 +50,12 @@ Edit `config.yml` to customize your tournament structure:
 rounds:
   - number: 1
     name: "Round 1"
-    duration: 1200  # 20 minutes in seconds
+    duration: 20  # minutes
     is_break: false
   
   - number: 2
     name: "Break"
-    duration: 300  # 5 minutes in seconds
+    duration: 5  # minutes
     is_break: true
 ```
 
@@ -65,7 +63,7 @@ rounds:
 
 - `number`: Round number (for display)
 - `name`: Round name (displayed prominently)
-- `duration`: Round length in seconds
+- `duration`: Round length in minutes
 - `is_break`: `true` for breaks (changes background color), `false` for regular rounds
 
 ## Usage
@@ -81,12 +79,6 @@ rounds:
 - **Warning** (< 2 minutes): Orange pulsing timer
 - **Final Countdown** (< 10 seconds): Red flashing timer
 - **Break**: Red/pink gradient background
-
-## Screenshots
-
-| Paused State | Running | 2-Minute Warning | Break Time |
-|--------------|---------|------------------|------------|
-| ![Paused](https://github.com/user-attachments/assets/9142957d-4d1a-4769-b2cf-c9cfdc69b59f) | ![Running](https://github.com/user-attachments/assets/a30dd18f-5186-4c93-a06f-62e74cdc07ed) | ![Warning](https://github.com/user-attachments/assets/cc97f12b-fbd8-43f2-8177-0afef58f56e0) | ![Break](https://github.com/user-attachments/assets/7ec09cbc-955f-4973-9b47-346fc5426273) |
 
 ## Technical Details
 
