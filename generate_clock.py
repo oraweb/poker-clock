@@ -32,7 +32,14 @@ def generate_html(config):
     rounds_with_seconds = []
     for round_config in config['rounds']:
         round_data = round_config.copy()
-        round_data['duration'] = round_config['duration'] * 60  # Convert minutes to seconds
+        duration_minutes = round_config['duration']
+        
+        # Validate duration is a positive number
+        if not isinstance(duration_minutes, (int, float)) or duration_minutes <= 0:
+            raise ValueError(f"Invalid duration for round {round_config.get('number', 'unknown')}: "
+                           f"duration must be a positive number, got {duration_minutes}")
+        
+        round_data['duration'] = duration_minutes * 60  # Convert minutes to seconds
         rounds_with_seconds.append(round_data)
     
     rounds_json = json.dumps(rounds_with_seconds)
