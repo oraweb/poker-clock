@@ -1,6 +1,7 @@
 # Poker Tournament Clock
 
-A simple, elegant poker tournament clock that displays a full-screen countdown timer with visual indicators and automatic round transitions.
+A simple poker tournament clock that displays a full-screen countdown timer with visual indicators and automatic round transitions.
+https://oraweb.github.io/poker-clock/
 
 ## Features
 
