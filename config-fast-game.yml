@@ -3,31 +3,31 @@
 
 rounds:
   - number: 1
-    name: "5 / 10"
-    duration: 5  # minutes
+    name: "25 / 50"
+    duration: 10  # minutes
     is_break: false
   
   - number: 2
-    name: "10 / 20"
-    duration: 5  # minutes
+    name: "50 / 100"
+    duration: 10  # minutes
     is_break: false
   
   - number: 3
     name: "Break"
-    duration: 3  # minutes
+    duration: 5  # minutes
     is_break: true
   
   - number: 4
-    name: "25 / 50"
-    duration: 5  # minutes
+    name: "75 / 150"
+    duration: 10  # minutes
     is_break: false
   
   - number: 5
-    name: "50 / 100"
-    duration: 5  # minutes
+    name: "100 / 200"
+    duration: 10  # minutes
     is_break: false
   
   - number: 6
-    name: "100 / 200"
+    name: "200 / 400"
     duration: 10  # minutes
     is_break: false
