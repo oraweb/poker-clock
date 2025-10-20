@@ -418,8 +418,8 @@ def generate_html(config):
             updateRoundsTable();
         }}
 
-        // Start the next round
-        function startNextRound() {{
+        // Move to next round (common logic)
+        function moveToNextRound() {{
             // Mark current round as completed
             completedRounds.add(currentRoundIndex);
             
@@ -427,30 +427,26 @@ def generate_html(config):
                 currentRoundIndex++;
                 timeRemaining = rounds[currentRoundIndex].duration;
                 updateDisplay();
+                return true;
             }} else {{
                 // Tournament finished
                 stopTimer();
                 statusElement.textContent = 'TOURNAMENT COMPLETE';
                 statusElement.className = 'status';
+                return false;
             }}
         }}
 
-        // Advance to next round manually (Enter key)
+        // Start the next round (auto-advance, keeps timer running)
+        function startNextRound() {{
+            moveToNextRound();
+        }}
+
+        // Advance to next round manually (Enter key, pauses timer)
         function advanceToNextRound() {{
-            // Mark current round as completed
-            completedRounds.add(currentRoundIndex);
-            
-            if (currentRoundIndex < rounds.length - 1) {{
-                currentRoundIndex++;
-                timeRemaining = rounds[currentRoundIndex].duration;
-                // Pause the timer after advancing
+            if (moveToNextRound()) {{
+                // Pause the timer after manual advance
                 stopTimer();
-                updateDisplay();
-            }} else {{
-                // Tournament finished
-                stopTimer();
-                statusElement.textContent = 'TOURNAMENT COMPLETE';
-                statusElement.className = 'status';
             }}
         }}
 
