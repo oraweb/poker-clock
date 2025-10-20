@@ -281,10 +281,7 @@ def generate_html(config):
         }}
 
         .instructions {{
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
+            margin-top: 30px;
             font-size: 1.2rem;
             opacity: 0.5;
             text-align: center;
@@ -309,11 +306,11 @@ def generate_html(config):
             <div class="status paused" id="status">PAUSED</div>
             
             <div class="next-round" id="nextRound"></div>
+            
+            <div class="instructions">
+                Press SPACEBAR to Start/Pause | Press ENTER to Advance Round
+            </div>
         </div>
-    </div>
-    
-    <div class="instructions">
-        Press SPACEBAR to Start/Pause | Press ENTER to Advance Round
     </div>
 
     <script>
