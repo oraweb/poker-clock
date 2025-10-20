@@ -1,0 +1,53 @@
+# Poker League Configuration
+# Faseter blinds for league play
+
+rounds:
+  - number: 1
+    name: "25 / 50"
+    duration: 20  # minutes
+    is_break: false
+  
+  - number: 2
+    name: "50 / 100"
+    duration: 20  # minutes
+    is_break: false
+  
+  - number: 3
+    name: "Break"
+    duration: 10  # minutes
+    is_break: true
+  
+  - number: 4
+    name: "100 / 200"
+    duration: 20  # minutes
+    is_break: false
+  
+  - number: 5
+    name: "200 / 400"
+    duration: 20  # minutes
+    is_break: false
+  
+  - number: 6
+    name: "Break"
+    duration: 10  # minutes
+    is_break: true
+  
+  - number: 7
+    name: "250 / 500"
+    duration: 20  # minutes
+    is_break: false
+  
+  - number: 8
+    name: "500 / 1000"
+    duration: 20  # minutes
+    is_break: false
+
+  - number: 9
+    name: "Break"
+    duration: 10  # minutes
+    is_break: true
+  
+  - number: 10
+    name: "1000 / 2000"
+    duration: 120  # minutes
+    is_break: false

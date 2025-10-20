@@ -6,8 +6,11 @@ A simple, elegant poker tournament clock that displays a full-screen countdown t
 
 - **Large Countdown Display**: Centered, very large timer showing hours:minutes:seconds
 - **Full-Screen Support**: Optimized for any device with a large screen
-- **Configurable Rounds**: Define tournament rounds in `config.yml` with custom names, durations, and break indicators
-- **Keyboard Control**: Press spacebar to start/pause the timer
+- **Multiple Configurations**: Support for multiple tournament configurations with different structures
+- **Configurable Rounds**: Define tournament rounds in `config-*.yml` files with custom names, durations, and break indicators
+- **Keyboard Control**: 
+  - Press **SPACEBAR** to start/pause the timer
+  - Press **ENTER** to manually advance to the next round
 - **Auto-Progression**: Automatically advances to the next round when timer reaches zero
 - **Visual Warnings**: 
   - Orange pulsing at 2-minute warning
@@ -44,7 +47,11 @@ To enable GitHub Pages:
 
 ## Configuration
 
-Edit `config.yml` to customize your tournament structure:
+The poker clock supports multiple tournament configurations. Create configuration files following the pattern `config-*.yml` (e.g., `config-tourney.yml`, `config-league.yml`). The system will automatically detect up to 10 configuration files and generate separate clock pages for each.
+
+### Creating Configuration Files
+
+Edit or create `config-*.yml` files to customize your tournament structure:
 
 ```yaml
 rounds:
@@ -66,12 +73,20 @@ rounds:
 - `duration`: Round length in minutes
 - `is_break`: `true` for breaks (changes background color), `false` for regular rounds
 
+### Example Configurations
+
+The repository includes example configurations:
+- **config-tourney.yml**: Standard tournament with longer rounds (20 minutes)
+- **config-league.yml**: League play with shorter rounds (15 minutes)
+
 ## Usage
 
-1. Open the poker clock page
-2. Press **SPACEBAR** to start the timer
-3. Press **SPACEBAR** again to pause
-4. Timer automatically advances to the next round when it reaches zero
+1. Open the poker clock page (index.html)
+2. Select your desired tournament configuration (Tourney, League, etc.)
+3. Press **SPACEBAR** to start the timer
+4. Press **SPACEBAR** again to pause
+5. Press **ENTER** to manually advance to the next round
+6. Timer automatically advances to the next round when it reaches zero
 
 ## Visual States
 
